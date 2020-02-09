@@ -18,16 +18,22 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "monospace" :size 24))
+(when (string-equal system-type "windows-nt")
+  (setq doom-font "Consolas-12"))
+(when (string-equal system-type "darwin")
+  (setq doom-font (font-spec :family "monospace" :size 12)))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. These are the defaults.
-(setq doom-theme 'doom-one)
+(when (string-equal system-type "windows-nt")
+  (setq doom-theme 'doom-opera-light))
+(when (string-equal system-type "darwin")
+  (setq doom-theme 'doom-one))
 
 ;; If you intend to use org, it is recommended you change this!
-(setq org-directory "~/Dropbox/org/")
-(setq org-archive-location '"~/Dropbox/org-archive/a-%s::datetree/* Archived Tasks")
+(setq org-directory "~/org")
+(setq org-archive-location '"~/org/archive/a-%s::datetree/* Archived Tasks")
 
 ;; Org options
 (add-to-list 'org-modules 'org-checklist)
@@ -57,7 +63,6 @@
 (setq holiday-bahai-holidays nil)
 (setq holiday-hebrew-holidays nil)
 (setq holiday-islamic-holidays nil)
-
 
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:
