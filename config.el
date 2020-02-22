@@ -36,6 +36,8 @@
 (setq org-archive-location '"~/org/archive/a-%s::datetree/* Archived Tasks")
 
 ;; Org options
+(add-hook 'org-mode-hook (lambda () (auto-fill-mode -1)))
+(add-hook 'org-mode-hook (lambda () (visual-line-mode 1)))
 (add-to-list 'org-modules 'org-checklist)
 (setq org-agenda-window-setup 'current-window)
 (setq org-enforce-todo-dependencies t)
