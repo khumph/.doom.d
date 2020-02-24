@@ -21,7 +21,7 @@
 (when (string-equal system-type "windows-nt")
   (setq doom-font "Consolas-12"))
 (when (string-equal system-type "darwin")
-  (setq doom-font (font-spec :family "monospace" :size 12)))
+  (setq doom-font "Fira Mono-14"))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -29,13 +29,15 @@
 (when (string-equal system-type "windows-nt")
   (setq doom-theme 'doom-opera-light))
 (when (string-equal system-type "darwin")
-  (setq doom-theme 'doom-one))
+  (setq doom-theme 'doom-opera-light))
 
 ;; If you intend to use org, it is recommended you change this!
 (setq org-directory "~/org")
 (setq org-archive-location '"~/org/archive/a-%s::datetree/* Archived Tasks")
 
 ;; Org options
+(add-hook 'org-mode-hook (lambda () (auto-fill-mode -1)))
+(add-hook 'org-mode-hook (lambda () (visual-line-mode 1)))
 (add-to-list 'org-modules 'org-checklist)
 (setq org-agenda-window-setup 'current-window)
 (setq org-enforce-todo-dependencies t)
