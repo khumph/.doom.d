@@ -48,10 +48,13 @@
 
 ;(setq org-agenda-files (list "~/Dropbox/org"))
 (setq org-tag-alist '((:startgroup . nil)
-                     ("fusion" . ?f) ("home" . ?h) ("out" . ?o) ("work" . ?w)
+                     ("@fusion" . ?f) ("@home" . ?h) ("@out" . ?o) ("@work" . ?w)
                      (:endgroup . nil)
                      (:startgroup . nil)
-                     ("shallow" . ?s) ("deep" . ?d) ("event" . ?e)
+                     ("pers" . ?p) ("work" . ?r)
+                     (:endgroup . nil)
+                     (:startgroup . nil)
+                     ("shallow" . ?s) ("deep" . ?d)
                      (:endgroup . nil)))
 (setq org-tags-column 0)
 (setq org-todo-keywords
