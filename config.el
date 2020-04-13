@@ -22,9 +22,9 @@
 ;;   (setq doom-font "Consolas-12"))
 ;; (when (string-equal system-type "darwin")
 ;;   (setq doom-font "JetBrains Mono-13"))
-(if (string-equal system-type "gnu/linux")
-  (setq doom-font "JetBrains Mono-11")
-  (setq doom-font "JetBrains Mono-13"))
+(if (string-equal system-type "darwin")
+  (setq doom-font "JetBrains Mono-13")
+  (setq doom-font "JetBrains Mono-11"))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
