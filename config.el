@@ -29,11 +29,9 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. These are the defaults.
-;; (when (string-equal system-type "windows-nt")
-;;   (setq doom-theme 'doom-opera-light))
-;; (when (string-equal system-type "darwin")
-;;   (setq doom-theme 'doom-opera-light))
-(setq doom-theme 'doom-one)
+(if (string-equal system-type "gnu/linux")
+  (setq doom-theme 'doom-one)
+  (setq doom-theme 'doom-opera-light))
 
 ;; If you intend to use org, it is recommended you change this!
 (setq org-directory "~/org")
