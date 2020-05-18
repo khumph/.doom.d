@@ -2,7 +2,7 @@
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; refresh' after modifying this file!
-
+;;
 
 ;; These are used for a number of things, particularly for GPG configuration,
 ;; some email clients, file templates and snippets.
@@ -32,6 +32,8 @@
 (if (string-equal system-type "gnu/linux")
   (setq doom-theme 'doom-one)
   (setq doom-theme 'doom-opera-light))
+
+(auto-save-visited-mode +1)
 
 ;; If you intend to use org, it is recommended you change this!
 (setq org-directory "~/org")
