@@ -18,10 +18,6 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-;; (when (string-equal system-type "windows-nt")
-;;   (setq doom-font "Consolas-12"))
-;; (when (string-equal system-type "darwin")
-;;   (setq doom-font "JetBrains Mono-13"))
 (if (string-equal system-type "darwin")
   (setq doom-font "JetBrains Mono-13")
   (setq doom-font "JetBrains Mono-11"))
@@ -33,49 +29,69 @@
   (setq doom-theme 'doom-one)
   (setq doom-theme 'doom-opera-light))
 
-(auto-save-visited-mode +1)
 
-;; If you intend to use org, it is recommended you change this!
-(setq org-directory "~/org")
-(setq org-archive-location '"~/org-archive/%s-a::datetree/* Archived Tasks")
+;; Org roam options
+(setq org-roam-directory "~/org-roam"
+      org-roam-graph-viewer "/usr/bin/open"
+      org-roam-capture-templates
+      '(("d" "default" plain
+         (function org-roam-capture--get-point)
+         "%?"
+         :file-name "${slug}"
+         :head "#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
+         :unnarrowed t)))
+
+(after! org-roam
+        (map! :leader
+            :prefix "n"
+            :desc "org-roam" "l" #'org-roam
+            :desc "org-roam-insert" "i" #'org-roam-insert
+            :desc "org-roam-switch-to-buffer" "b" #'org-roam-switch-to-buffer
+            :desc "org-roam-find-file" "f" #'org-roam-find-file
+            :desc "org-roam-show-graph" "g" #'org-roam-show-graph
+            :desc "org-roam-insert" "i" #'org-roam-insert
+            :desc "org-roam-capture" "c" #'org-roam-capture))
+
+(setq deft-recursive t
+      deft-use-filter-string-for-filename t
+      deft-default-extension "org"
+      deft-directory org-roam-directory)
 
 ;; Org options
-(add-hook 'org-mode-hook (lambda () (auto-fill-mode -1)))
-(add-hook 'org-mode-hook (lambda () (visual-line-mode 1)))
+(if (string-equal system-type "windows-nt")
+    (setq home "/c/Users/kyleh/OneDrive - Cytel")
+    (setq home "~/Dropbox"))
+
+(after! org
+  (auto-fill-mode -1)
+  (visual-line-mode 1))
 (add-to-list 'org-modules 'org-checklist)
-(setq org-agenda-window-setup 'current-window)
-(setq org-enforce-todo-dependencies t)
-(setq org-enforce-todo-checkbox-dependencies t)
-(setq org-agenda-skip-scheduled-if-done t)
-(setq org-agenda-skip-deadline-if-done t)
-(setq org-agenda-show-future-repeats 'next)
-(setq org-log-done 'time)
-(setq org-log-into-drawer t)
+(setq org-directory (concat (file-name-as-directory home) "org")
+      org-archive-location (concat (file-name-as-directory home) "org-archive/%s-a::datetree/* Archived Tasks")
+      org-agenda-skip-scheduled-if-done t
+      org-agenda-skip-deadline-if-done t
+      org-agenda-show-future-repeats nil
+      org-enforce-todo-checkbox-dependencies t
+      ;; org-log-into-drawer t
+      org-priority-highest 1
+      org-priority-lowest 10
+      org-priority-default 5
+      org-tags-column 0
+      org-tag-alist '((:startgroup . context)
+                      ("@fusion" . ?f) ("@home" . ?h) ("@out" . ?o) ("@work" . ?w)
+                      (:endgroup . context)
+                      (:startgroup . nil)
+                      ("pers" . ?p) ("work" . ?r)
+                      (:endgroup . nil)
+                      (:startgroup . depth)
+                      ("shallow" . ?s) ("deep" . ?d)
+                      (:endgroup . depth)))
 
-;(setq org-agenda-files (list "~/Dropbox/org"))
-(setq org-tag-alist '((:startgroup . nil)
-                     ("@fusion" . ?f) ("@home" . ?h) ("@out" . ?o) ("@work" . ?w)
-                     (:endgroup . nil)
-                     (:startgroup . nil)
-                     ("pers" . ?p) ("work" . ?r)
-                     (:endgroup . nil)
-                     (:startgroup . nil)
-                     ("shallow" . ?s) ("deep" . ?d)
-                     (:endgroup . nil)))
-(setq org-tags-column 0)
-(setq org-todo-keywords
-  '((sequence "TODO(t)" "|" "DONE(d)")
-    (sequence "WAITING(w@/!)" "MAYBE(m!)" "|")
-    (sequence "|" "CANCELLED(c@)")))
-
-;; Omit non-US holidays
-(setq holiday-bahai-holidays nil)
-(setq holiday-hebrew-holidays nil)
-(setq holiday-islamic-holidays nil)
 
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type nil)
+(auto-save-visited-mode +1)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
