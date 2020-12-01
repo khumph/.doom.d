@@ -31,35 +31,37 @@
 
 
 ;; Org roam options
-(setq org-roam-directory "~/org-roam"
-      org-roam-graph-viewer "/usr/bin/open"
-      org-roam-capture-templates
-      '(("d" "default" plain
-         (function org-roam-capture--get-point)
-         "%?"
-         :file-name "${slug}"
-         :head "#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
-         :unnarrowed t)))
+(when (string-equal system-type "darwin")
+  (setq org-roam-directory "~/org-roam"
+        org-roam-graph-viewer "/usr/bin/open"
+        org-roam-capture-templates
+        '(("d" "default" plain
+           (function org-roam-capture--get-point)
+           "%?"
+           :file-name "${slug}"
+           :head "#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
+           :unnarrowed t)))
 
-(after! org-roam
-        (map! :leader
-            :prefix "n"
-            :desc "org-roam" "l" #'org-roam
-            :desc "org-roam-insert" "i" #'org-roam-insert
-            :desc "org-roam-switch-to-buffer" "b" #'org-roam-switch-to-buffer
-            :desc "org-roam-find-file" "f" #'org-roam-find-file
-            :desc "org-roam-show-graph" "g" #'org-roam-show-graph
-            :desc "org-roam-insert" "i" #'org-roam-insert
-            :desc "org-roam-capture" "c" #'org-roam-capture))
+  (after! org-roam
+    (map! :leader
+          :prefix "n"
+          :desc "org-roam" "l" #'org-roam
+          :desc "org-roam-insert" "i" #'org-roam-insert
+          :desc "org-roam-switch-to-buffer" "b" #'org-roam-switch-to-buffer
+          :desc "org-roam-find-file" "f" #'org-roam-find-file
+          :desc "org-roam-show-graph" "g" #'org-roam-show-graph
+          :desc "org-roam-insert" "i" #'org-roam-insert
+          :desc "org-roam-capture" "c" #'org-roam-capture))
 
-(setq deft-recursive t
-      deft-use-filter-string-for-filename t
-      deft-default-extension "org"
-      deft-directory org-roam-directory)
+  (setq deft-recursive t
+        deft-use-filter-string-for-filename t
+        deft-default-extension "org"
+        deft-directory org-roam-directory)
+)
 
 ;; Org options
 (if (string-equal system-type "windows-nt")
-    (setq home "/c/Users/kyleh/OneDrive - Cytel")
+    (setq home "~/OneDrive - Cytel")
     (setq home "~/Dropbox"))
 
 (after! org
@@ -72,7 +74,8 @@
       org-agenda-skip-deadline-if-done t
       org-agenda-show-future-repeats nil
       org-enforce-todo-checkbox-dependencies t
-      ;; org-log-into-drawer t
+      org-log-done 'time
+      org-log-into-drawer t
       org-priority-highest 1
       org-priority-lowest 10
       org-priority-default 5
