@@ -77,8 +77,8 @@
       org-log-done 'time
       org-log-into-drawer t
       org-priority-highest 1
-      org-priority-lowest 10
-      org-priority-default 5
+      org-priority-lowest 6
+      org-priority-default 4
       org-tags-column 0
       org-tag-alist '((:startgroup . context)
                       ("@fusion" . ?f) ("@home" . ?h) ("@out" . ?o) ("@work" . ?w)
