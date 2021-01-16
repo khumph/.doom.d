@@ -29,6 +29,8 @@
   (setq doom-theme 'doom-one)
   (setq doom-theme 'doom-opera-light))
 
+;; Start emacs maximized
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; Org roam options
 (when (string-equal system-type "darwin")
