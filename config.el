@@ -20,7 +20,7 @@
 ;; font string. You generally only need these two:
 (if (string-equal system-type "darwin")
   (setq doom-font "JetBrains Mono-13")
-  (setq doom-font "JetBrains Mono-11"))
+  (setq doom-font "JetBrains Mono-10"))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -71,7 +71,7 @@
   (visual-line-mode 1))
 (add-to-list 'org-modules 'org-checklist)
 (setq org-directory (concat (file-name-as-directory home) "org")
-      org-agenda-files (list (file-name-as-directory org-directory) (concat (file-name-as-directory org-directory) "axio"))
+      org-agenda-files (list (concat (file-name-as-directory org-directory) "pers") (concat (file-name-as-directory org-directory) "axio"))
       org-archive-location (concat (file-name-as-directory home) "org-archive/%s-a::datetree/* Archived Tasks")
       org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
