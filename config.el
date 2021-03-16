@@ -71,7 +71,9 @@
   (visual-line-mode 1))
 (add-to-list 'org-modules 'org-checklist)
 (setq org-directory (concat (file-name-as-directory home) "org")
-      org-agenda-files (list (concat (file-name-as-directory org-directory) "pers") (concat (file-name-as-directory org-directory) "axio"))
+      org-agenda-files (list (concat (file-name-as-directory org-directory) "pers")
+                             (concat (file-name-as-directory org-directory) "axio")
+                             (file-name-as-directory org-directory))
       org-archive-location (concat (file-name-as-directory home) "org-archive/%s-a::datetree/* Archived Tasks")
       org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
