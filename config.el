@@ -86,10 +86,10 @@
       org-priority-default 4
       org-tags-column 0
       org-tag-alist '((:startgroup . context)
-                      ("@fusion" . ?f) ("@home" . ?h) ("@out" . ?o) ("@work" . ?w)
+                      ("@home" . ?h) ("@out" . ?o)
                       (:endgroup . context)
                       (:startgroup . nil)
-                      ("pers" . ?p) ("work" . ?r)
+                      ("pers" . ?p) ("work" . ?w)
                       (:endgroup . nil)
                       (:startgroup . depth)
                       ("shallow" . ?s) ("deep" . ?d)
