@@ -32,68 +32,62 @@
 ;; Start emacs maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;; Org roam options
-(when (string-equal system-type "darwin")
-  (setq org-roam-directory "~/org-roam"
-        org-roam-graph-viewer "/usr/bin/open"
-        org-roam-capture-templates
-        '(("d" "default" plain
-           (function org-roam-capture--get-point)
-           "%?"
-           :file-name "${slug}"
-           :head "#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n"
-           :unnarrowed t)))
-
-  (after! org-roam
-    (map! :leader
-          :prefix "n"
-          :desc "org-roam" "l" #'org-roam
-          :desc "org-roam-insert" "i" #'org-roam-insert
-          :desc "org-roam-switch-to-buffer" "b" #'org-roam-switch-to-buffer
-          :desc "org-roam-find-file" "f" #'org-roam-find-file
-          :desc "org-roam-show-graph" "g" #'org-roam-show-graph
-          :desc "org-roam-insert" "i" #'org-roam-insert
-          :desc "org-roam-capture" "c" #'org-roam-capture))
-
-  (setq deft-recursive t
-        deft-use-filter-string-for-filename t
-        deft-default-extension "org"
-        deft-directory org-roam-directory)
-)
-
 ;; Org options
-(if (string-equal system-type "windows-nt")
-    (setq home "~/OneDrive - Cytel")
-    (setq home "~/Dropbox"))
-
 (after! org
+  (if (string-equal system-type "windows-nt")
+      (setq home "~/OneDrive - Cytel")
+      (setq home "~/Dropbox"))
+
   (auto-fill-mode -1)
-  (visual-line-mode 1))
-(add-to-list 'org-modules 'org-checklist)
-(setq org-directory (concat (file-name-as-directory home) "org")
-      org-agenda-files (list (concat (file-name-as-directory org-directory) "pers")
-                             (concat (file-name-as-directory org-directory) "axio")
-                             (file-name-as-directory org-directory))
-      org-archive-location (concat (file-name-as-directory home) "org-archive/%s-a::datetree/* Archived Tasks")
-      org-agenda-skip-scheduled-if-done t
-      org-agenda-skip-deadline-if-done t
-      org-agenda-show-future-repeats nil
-      org-enforce-todo-checkbox-dependencies t
-      org-log-done 'time
-      org-log-into-drawer t
-      org-priority-highest 1
-      org-priority-lowest 6
-      org-priority-default 4
-      org-tags-column 0
-      org-tag-alist '((:startgroup . context)
-                      ("@home" . ?h) ("@out" . ?o)
-                      (:endgroup . context)
-                      (:startgroup . nil)
-                      ("pers" . ?p) ("work" . ?w)
-                      (:endgroup . nil)
-                      (:startgroup . depth)
-                      ("shallow" . ?s) ("deep" . ?d)
-                      (:endgroup . depth)))
+  (visual-line-mode 1)
+  (add-to-list 'org-modules 'org-checklist)
+  (setq org-directory (concat (file-name-as-directory home) "org")
+        org-agenda-files (list (concat (file-name-as-directory org-directory) "pers")
+                               (concat (file-name-as-directory org-directory) "axio")
+                               (file-name-as-directory org-directory))
+        org-archive-location (concat (file-name-as-directory home) "org-archive/%s-a::datetree/* Archived Tasks")
+        org-agenda-skip-scheduled-if-done t
+        org-agenda-skip-deadline-if-done t
+        org-agenda-show-future-repeats nil
+        org-enforce-todo-checkbox-dependencies t
+        org-log-done 'time
+        org-log-into-drawer t
+        org-priority-highest 1
+        org-priority-lowest 6
+        org-priority-default 4
+        org-tags-column 0
+        org-tag-alist '((:startgroup . context)
+                        ("@home" . ?h) ("@out" . ?o)
+                        (:endgroup . context)
+                        (:startgroup . nil)
+                        ("pers" . ?p) ("work" . ?w)
+                        (:endgroup . nil)
+                        (:startgroup . depth)
+                        ("shallow" . ?s) ("deep" . ?d)
+                        (:endgroup . depth)))
+
+  ;; Org roam options
+  (when (string-equal system-type "darwin")
+    (setq org-roam-directory (concat (file-name-as-directory home) "org-roam")
+          org-roam-graph-viewer "/usr/bin/open"
+          org-roam-capture-templates
+          '(("d" "default" plain
+             "%?"
+             :target (file+head "${slug}.org" "#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
+             :unnarrowed t))
+
+          deft-recursive t
+          org-roam-completion-everywhere t
+          deft-use-filter-string-for-filename t
+          deft-default-extension "org"
+          deft-directory org-roam-directory
+
+          org-roam-mode-section-functions
+          (list #'org-roam-backlinks-section
+                #'org-roam-reflinks-section
+                #'org-roam-unlinked-references-section)))
+  )
+
 
 
 ;; If you want to change the style of line numbers, change this to `relative' or
@@ -117,3 +111,5 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
+;;
+;; (defun native-comp-available-p nil)
