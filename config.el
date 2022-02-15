@@ -69,6 +69,8 @@
                         ("shallow" . ?s) ("deep" . ?d)
                         (:endgroup . depth)))
 
+  (setq org-cite-global-bibliography (list (expand-file-name (concat (file-name-as-directory home) "library.bib"))))
+
   ;; Org roam options
   (when (string-equal system-type "darwin")
     (setq org-roam-directory (concat (file-name-as-directory home) "org-roam")
