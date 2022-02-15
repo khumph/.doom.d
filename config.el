@@ -30,7 +30,7 @@
   (setq doom-theme 'doom-opera-light))
 
 ;; Start emacs maximized
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; Delete by moving to trash
 (setq delete-by-moving-to-trash t)
