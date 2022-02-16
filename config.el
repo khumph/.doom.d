@@ -72,26 +72,43 @@
   (setq org-cite-global-bibliography (list (expand-file-name (concat (file-name-as-directory home) "library.bib"))))
 
   ;; Org roam options
-  (when (string-equal system-type "darwin")
-    (setq org-roam-directory (concat (file-name-as-directory home) "org-roam")
-          org-roam-graph-viewer "/usr/bin/open"
-          org-roam-capture-templates
-          '(("d" "default" plain
-             "%?"
-             :target (file+head "${slug}.org" "#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
-             :unnarrowed t))
+  (after! org-roam
+    (when (string-equal system-type "darwin")
+      (setq org-roam-directory (concat (file-name-as-directory home) "org-roam")
+            org-roam-graph-viewer "/usr/bin/open"
+            org-roam-capture-templates
+            '(("d" "default" plain
+               "%?"
+               :target (file+head "${slug}.org" "#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
+               :unnarrowed t))
 
-          deft-recursive t
-          org-roam-completion-everywhere t
-          deft-use-filter-string-for-filename t
-          deft-default-extension "org"
-          deft-directory org-roam-directory
+            deft-recursive t
+            org-roam-completion-everywhere t
+            deft-use-filter-string-for-filename t
+            deft-default-extension "org"
+            deft-directory org-roam-directory
 
-          org-roam-mode-section-functions
-          (list #'org-roam-backlinks-section
-                #'org-roam-reflinks-section
-                #'org-roam-unlinked-references-section)))
+            org-roam-mode-section-functions
+            (list #'org-roam-backlinks-section
+                  #'org-roam-reflinks-section
+                  #'org-roam-unlinked-references-section))))
   )
+
+(use-package! websocket
+    :after org-roam)
+
+(use-package! org-roam-ui
+    :after org-roam ;; or :after org
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
+
 
 
 
