@@ -54,3 +54,4 @@
 
 (unpin! org-roam) ; org-roam-ui needs latest version of roam, which may be newer than DOOM's
 (package! org-roam-ui)
+(package! org-roam-timestamps)

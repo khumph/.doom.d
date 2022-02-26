@@ -109,7 +109,9 @@
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
 
-
+(use-package! org-roam-timestamps
+  :after org-roam
+  :config (org-roam-timestamps-mode))
 
 
 ;; If you want to change the style of line numbers, change this to `relative' or
