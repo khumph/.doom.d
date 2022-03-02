@@ -18,22 +18,28 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(if (string-equal system-type "darwin")
-  (setq doom-font "JetBrains Mono-13")
-  (setq doom-font "JetBrains Mono-10"))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 13))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. These are the defaults.
-(if (string-equal system-type "gnu/linux")
-  (setq doom-theme 'doom-one)
-  (setq doom-theme 'doom-opera-light))
+(setq doom-theme 'doom-opera-light)
 
 ;; Start emacs maximized
 ;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;; Delete by moving to trash
-(setq delete-by-moving-to-trash t)
+;; Set defaults
+(setq-default
+ delete-by-moving-to-trash t                      ; Delete files to trash
+ window-combination-resize t                      ; take new window space from all other windows (not just current)
+ x-stretch-cursor t)                              ; Stretch cursor to the glyph width
+
+(setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
+      evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
+      truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
+      password-cache-expiry nil                   ; I can trust my computers ... can't I?
+      ;; scroll-preserve-screen-position 'always     ; Don't have `point' jump around
+      scroll-margin 2)                            ; It's nice to maintain a little margin
 
 ;; Org options
 (after! org
@@ -49,6 +55,7 @@
                                (concat (file-name-as-directory org-directory) "axio")
                                (file-name-as-directory org-directory))
         org-archive-location (concat (file-name-as-directory home) "org-archive/%s-a::datetree/* Archived Tasks")
+        org-hide-emphasis-markers t
         org-agenda-skip-scheduled-if-done t
         org-agenda-skip-deadline-if-done t
         org-agenda-show-future-repeats nil
@@ -116,7 +123,6 @@
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:
 (setq display-line-numbers-type nil)
-(auto-save-visited-mode +1)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
