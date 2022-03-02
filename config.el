@@ -24,6 +24,8 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. These are the defaults.
 (setq doom-theme 'doom-opera-light)
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic))
 
 ;; Start emacs maximized
 ;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
