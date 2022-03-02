@@ -67,52 +67,51 @@
                         (:endgroup . nil)
                         (:startgroup . depth)
                         ("shallow" . ?s) ("deep" . ?d)
-                        (:endgroup . depth)))
+                        (:endgroup . depth))))
 
-  (setq org-cite-global-bibliography (list (expand-file-name (concat (file-name-as-directory home) "library.bib"))))
 
-  ;; Org roam options
-  (after! org-roam
-    (when (string-equal system-type "darwin")
-      (setq org-roam-directory (concat (file-name-as-directory home) "org-roam")
-            org-roam-graph-viewer "/usr/bin/open"
-            org-roam-capture-templates
-            '(("d" "default" plain
-               "%?"
-               :target (file+head "${slug}.org" "#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
-               :unnarrowed t))
+(if IS-MAC
+    (after! org
+      (setq org-cite-global-bibliography (list (expand-file-name (concat (file-name-as-directory home) "library.bib"))))
 
-            deft-recursive t
-            org-roam-completion-everywhere t
-            deft-use-filter-string-for-filename t
-            deft-default-extension "org"
-            deft-directory org-roam-directory
+      ;; Org roam options
+      (after! org-roam
+        (setq org-roam-directory (concat (file-name-as-directory home) "org-roam")
+              org-roam-graph-viewer "/usr/bin/open"
+              org-roam-capture-templates
+              '(("d" "default" plain
+                 "%?"
+                 :target (file+head "${slug}.org" "#+TITLE: ${title}\n#+CREATED: %U\n#+LAST_MODIFIED: %U\n\n")
+                 :unnarrowed t))
 
-            org-roam-mode-section-functions
-            (list #'org-roam-backlinks-section
-                  #'org-roam-reflinks-section
-                  #'org-roam-unlinked-references-section))))
-  )
+              deft-recursive t
+              org-roam-completion-everywhere t
+              deft-use-filter-string-for-filename t
+              deft-default-extension "org"
+              deft-directory org-roam-directory
 
-(use-package! websocket
-    :after org-roam)
+              org-roam-mode-section-functions
+              (list #'org-roam-backlinks-section
+                    #'org-roam-reflinks-section)))
 
-(use-package! org-roam-ui
-    :after org-roam ;; or :after org
-;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-;;         a hookable mode anymore, you're advised to pick something yourself
-;;         if you don't care about startup time, use
-;;  :hook (after-init . org-roam-ui-mode)
-    :config
-    (setq org-roam-ui-sync-theme t
-          org-roam-ui-follow t
-          org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start t))
+      (use-package! websocket
+        :after org-roam)
 
-(use-package! org-roam-timestamps
-  :after org-roam
-  :config (org-roam-timestamps-mode))
+      (use-package! org-roam-ui
+        :after org-roam ;; or :after org
+        ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+        ;;         a hookable mode anymore, you're advised to pick something yourself
+        ;;         if you don't care about startup time, use
+        ;;  :hook (after-init . org-roam-ui-mode)
+        :config
+        (setq org-roam-ui-sync-theme t
+              org-roam-ui-follow t
+              org-roam-ui-update-on-save t
+              org-roam-ui-open-on-start t))
 
+      (use-package! org-roam-timestamps
+        :after org-roam
+        :config (org-roam-timestamps-mode))))
 
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:
