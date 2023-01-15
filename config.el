@@ -48,11 +48,8 @@
   (auto-fill-mode -1)
   (visual-line-mode 1)
   (add-to-list 'org-modules 'org-checklist)
-  (setq home (if IS-WINDOWS "~/OneDrive - Cytel" "~/Dropbox")
-        org-directory (concat (file-name-as-directory home) "org")
-        org-agenda-files (list (concat (file-name-as-directory org-directory) "pers")
-                               (concat (file-name-as-directory org-directory) "axio")
-                               (file-name-as-directory org-directory))
+  (setq org-directory "~/Desktop"
+        org-agenda-files (directory-files-recursively "~/Desktop" "\\.org$")
         org-archive-location "::* Archived"
         org-hide-emphasis-markers t
         org-agenda-skip-scheduled-if-done t
@@ -75,14 +72,11 @@
                         ("shallow" . ?s) ("deep" . ?d)
                         (:endgroup . depth)))
 
-
-  (unless IS-WINDOWS
-    (setq org-cite-global-bibliography (list (expand-file-name (concat (file-name-as-directory home) "library.bib"))))
+    (setq org-cite-global-bibliography (list (expand-file-name "~/Documents/org-roam/library.bib"))))
 
     ;; Org roam options
-    (after! org-roam
-      (setq org-roam-directory (concat (file-name-as-directory home) "org-roam")
-            ;; org-roam-graph-viewer "/usr/bin/open"
+(after! org-roam
+      (setq org-roam-directory "~/Documents/org-roam/cards"
             org-roam-capture-templates
             '(("d" "default" plain
                "%?"
@@ -94,7 +88,15 @@
       (use-package! websocket)
       (use-package! org-roam-ui)
       (use-package! org-roam-timestamps
-        :config (org-roam-timestamps-mode)))))
+        :config (org-roam-timestamps-mode)))
+
+(use-package! anki-editor
+    :after org-mode
+    :config
+    (setq anki-editor-create-decks 't))
+
+;; (setq python-shell-interpreter "ipython3"
+;;       python-shell-interpreter-args "--simple-prompt")
 
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:
