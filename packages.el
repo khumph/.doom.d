@@ -57,3 +57,5 @@
       (package! org-roam-ui)
       (package! org-roam-timestamps)))
 
+(package! anki-editor)
+(package! org-anki)
