@@ -88,29 +88,29 @@
                         (:startgroup . depth)
                         ("shallow" . ?s) ("deep" . ?d)
                         (:endgroup . depth)))
+  (setq org-cite-global-bibliography (list (expand-file-name "~/Documents/org-roam/library.bib")))
+  (customize-set-variable 'org-anki-default-deck "Default"))
 
-    (setq org-cite-global-bibliography (list (expand-file-name "~/Documents/org-roam/library.bib"))))
-
-    ;; Org roam options
+;; Org roam options
 (after! org-roam
-      (setq org-roam-directory "~/Documents/org-roam/cards"
-            org-roam-capture-templates
-            '(("d" "default" plain
-               "%?"
-               :target (file+head "${slug}.org" "#+TITLE: ${title}")
-               :unnarrowed t))
-            org-roam-completion-everywhere t)
+  (setq org-roam-directory "~/Documents/org-roam/cards"
+        org-roam-capture-templates
+        '(("d" "default" plain
+           "%?"
+           :target (file+head "${slug}.org" "#+TITLE: ${title}")
+           :unnarrowed t))
+        org-roam-completion-everywhere t)
 
-      ;; org-roam-ui config
-      (use-package! websocket)
-      (use-package! org-roam-ui)
-      (use-package! org-roam-timestamps
-        :config (org-roam-timestamps-mode)))
+  ;; org-roam-ui config
+  (use-package! websocket)
+  (use-package! org-roam-ui)
+  (use-package! org-roam-timestamps
+    :config (org-roam-timestamps-mode)))
 
 (use-package! anki-editor
-    :after org-mode
-    :config
-    (setq anki-editor-create-decks 't))
+  :after org-mode
+  :config
+  (setq anki-editor-create-decks 't))
 
 ;; (setq python-shell-interpreter "ipython3"
 ;;       python-shell-interpreter-args "--simple-prompt")
