@@ -78,6 +78,7 @@
         org-priority-default 4
         org-tags-column 0
         org-todo-repeat-to-state t
+        +org-capture-journal-file "journal.org"
         org-tag-alist '((:startgroup . context)
                         ("@home" . ?h) ("@out" . ?o)
                         (:endgroup . context)
