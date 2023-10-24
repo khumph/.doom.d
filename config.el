@@ -77,6 +77,7 @@
         org-priority-lowest 6
         org-priority-default 4
         org-tags-column 0
+        org-todo-repeat-to-state t
         org-tag-alist '((:startgroup . context)
                         ("@home" . ?h) ("@out" . ?o)
                         (:endgroup . context)
