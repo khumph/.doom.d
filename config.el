@@ -63,7 +63,7 @@
                '("i" "Inbox" plain (file "inbox.org") "%?"))
   (setq org-directory "~/Desktop/org"
         org-agenda-files (directory-files-recursively "~/Desktop" "\\.org$")
-        org-archive-location "::* Archived"
+        org-archive-location "archive.org::* %s"
         org-hide-emphasis-markers t
         org-agenda-skip-scheduled-if-done t
         org-agenda-skip-deadline-if-done t
