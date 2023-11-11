@@ -38,9 +38,6 @@
 ;; (add-hook 'org-mode-hook 'disable-whitespace-line)
 ;; (add-hook 'markdown-mode-hook 'disable-whitespace-line)
 
-;; Start Emacs maximized
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
 ;; Use normal size title bar in macOS Sonoma
 ;; https://github.com/doomemacs/doomemacs/issues/7532
 (add-hook 'doom-after-init-hook (lambda () (tool-bar-mode 1) (tool-bar-mode 0)))
