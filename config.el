@@ -92,6 +92,10 @@
   (setq org-cite-global-bibliography (list (expand-file-name "~/Documents/org-roam/library.bib")))
   (customize-set-variable 'org-anki-default-deck "Default"))
 
+(map! :after evil-org
+      :map evil-org-mode-map
+      :ni "C-<return>" #'org-insert-heading-respect-content)
+
 ;; Org roam options
 (after! org-roam
   (setq org-roam-directory "~/Documents/org-roam/cards"
