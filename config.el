@@ -87,7 +87,7 @@
                         (:startgroup . depth)
                         ("shallow" . ?s) ("deep" . ?d)
                         (:endgroup . depth)))
-  (setq org-cite-global-bibliography (list (expand-file-name "~/Documents/org-roam/library.bib")))
+  (setq org-cite-global-bibliography (list (expand-file-name "~/projects/org-roam/library.bib")))
   (customize-set-variable 'org-anki-default-deck "Default"))
 
 (map! :after evil-org
@@ -96,7 +96,7 @@
 
 ;; Org roam options
 (after! org-roam
-  (setq org-roam-directory "~/Documents/org-roam/cards"
+  (setq org-roam-directory "~/projects/org-roam/cards"
         org-roam-capture-templates
         '(("d" "default" plain
            "%?"
