@@ -28,10 +28,6 @@
 (custom-set-faces!
   '(font-lock-comment-face :slant italic))
 
-(global-whitespace-mode +1)
-(setq whitespace-style '(face indentation tabs tab-mark spaces space-mark
-                         newline newline-mark trailing))
-
 ;; (defun disable-whitespace-line ()
 ;;   (interactive)
 ;;   (set (make-local-variable 'whitespace-line-column) 1000000000))
