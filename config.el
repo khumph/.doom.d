@@ -28,13 +28,6 @@
 (custom-set-faces!
   '(font-lock-comment-face :slant italic))
 
-;; (defun disable-whitespace-line ()
-;;   (interactive)
-;;   (set (make-local-variable 'whitespace-line-column) 1000000000))
-
-;; (add-hook 'org-mode-hook 'disable-whitespace-line)
-;; (add-hook 'markdown-mode-hook 'disable-whitespace-line)
-
 ;; Use normal size title bar in macOS Sonoma
 ;; https://github.com/doomemacs/doomemacs/issues/7532
 (add-hook 'doom-after-init-hook (lambda () (tool-bar-mode 1) (tool-bar-mode 0)))
@@ -111,13 +104,9 @@
   :config
   (setq anki-editor-create-decks 't))
 
-;; (setq python-shell-interpreter "ipython3"
-;;       python-shell-interpreter-args "--simple-prompt")
-
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:
 (setq display-line-numbers-type nil)
-
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
