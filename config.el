@@ -50,8 +50,6 @@
   (auto-fill-mode -1)
   (visual-line-mode 1)
   (add-to-list 'org-modules 'org-checklist)
-  (add-to-list 'org-capture-templates
-               '("i" "Inbox" entry (file "inbox.org") "* %?"))
   (setq org-directory "~/Desktop/org"
         org-agenda-files (directory-files-recursively "~/Desktop" "\\.org$")
         org-archive-location "archive.org::* %s"
