@@ -20,13 +20,13 @@
 ;; font string. You generally only need these two:
 (setq doom-font (font-spec :family "JetBrains Mono" :size 13))
 (setq doom-variable-pitch-font (font-spec :family "Literata" :size 13))
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. These are the defaults.
 (setq doom-theme 'doom-opera-light)
-(custom-set-faces!
-  '(font-lock-comment-face :slant italic))
 
 ;; Use normal size title bar in macOS Sonoma
 ;; https://github.com/doomemacs/doomemacs/issues/7532
