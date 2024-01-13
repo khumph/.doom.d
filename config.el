@@ -50,9 +50,8 @@
   (auto-fill-mode -1)
   (visual-line-mode 1)
   (add-to-list 'org-modules 'org-checklist)
-  (setq org-directory "~/Desktop/org"
-        org-agenda-files (directory-files-recursively "~/Desktop" "\\.org$")
-        org-archive-location "archive.org::* %s"
+  (setq org-directory "~/org"
+        org-archive-location "~/Documents/org-archive/archive.org::* %s"
         org-agenda-skip-scheduled-if-done t
         org-agenda-skip-deadline-if-done t
         org-agenda-show-future-repeats nil
