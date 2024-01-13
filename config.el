@@ -47,8 +47,6 @@
 
 ;; Org options
 (after! org
-  (auto-fill-mode -1)
-  (visual-line-mode 1)
   (add-to-list 'org-modules 'org-checklist)
   (setq org-directory "~/org"
         org-archive-location "~/Documents/org-archive/archive.org::* %s"
@@ -75,6 +73,8 @@
                         (:endgroup . depth)))
   (setq org-cite-global-bibliography (list (expand-file-name "~/projects/org-roam/library.bib")))
   (customize-set-variable 'org-anki-default-deck "Default"))
+
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 (map! :after evil-org
       :map evil-org-mode-map
